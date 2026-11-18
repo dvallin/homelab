@@ -1,0 +1,15 @@
+input_select:
+  house_mode:
+    name: Hausmodus
+    icon: mdi:home-switch
+    options:
+      - Zuhause
+      - Abwesend
+      - Urlaub
+    initial: Zuhause
+
+input_boolean:
+  house_automations_enabled:
+    name: Hausautomationen aktiviert
+    icon: mdi:robot
+    initial: false

@@ -4,8 +4,18 @@ services:
     image: ghcr.io/home-assistant/home-assistant:stable
     network_mode: host
     restart: unless-stopped
+    stop_grace_period: 60s
+
     environment:
       TZ: Europe/Berlin
+
     volumes:
+      # Persistent runtime data (must be shared with Docker in preferences)
       - /srv/homeassistant/config:/config
+
+      # Declarative configuration from Git
+      - ./homeassistant/configuration.yaml:/config/configuration.yaml:ro
+      - ./homeassistant/packages:/config/packages:ro
+      - ./homeassistant/dashboards:/config/dashboards:ro
+
       - /etc/localtime:/etc/localtime:ro

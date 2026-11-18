@@ -1,0 +1,20 @@
+default_config:
+
+homeassistant:
+  packages: !include_dir_named packages
+
+# UI-managed configurations
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# Git-managed dashboards
+lovelace:
+  mode: storage
+  dashboards:
+    haus-uebersicht:
+      mode: yaml
+      title: Haus
+      icon: mdi:home
+      show_in_sidebar: true
+      filename: dashboards/home.yaml

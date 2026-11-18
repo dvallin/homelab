@@ -1,0 +1,50 @@
+title: Haus
+
+views:
+  - title: Übersicht
+    path: overview
+    icon: mdi:home
+
+    cards:
+      - type: markdown
+        content: |
+          # Unser Haus
+
+          Zentrale Übersicht für Raumklima,
+          Heizung und Hausautomation.
+
+      - type: entities
+        title: Haussteuerung
+        show_header_toggle: false
+        entities:
+          - entity: input_select.house_mode
+            name: Hausmodus
+          - entity: input_boolean.house_automations_enabled
+            name: Automationen
+
+      - type: markdown
+        title: Geräte
+        content: |
+          {% set vacuums = states.vacuum | list %}
+
+          **Roborock**
+
+          {% if vacuums %}
+          {% for v in vacuums %}
+          - {{ v.name }}: {{ v.state }}
+          {% endfor %}
+          {% else %}
+          Noch kein Saugroboter gefunden.
+          {% endif %}
+
+          **Weitere Geräte**
+
+          FRITZ!Box und Brother lassen sich
+          ergänzen, sobald ihre Entitäts-IDs
+          feststehen.
+
+      - type: entities
+        title: System
+        entities:
+          - entity: sun.sun
+            name: Sonnenstand
